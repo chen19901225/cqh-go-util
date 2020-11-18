@@ -2,6 +2,7 @@
 	"name": "cqh-go-util",
 	"displayName": "cqh-go-util",
 	"description": "",
+	"publisher": "cqh",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.51.0"
