@@ -34,6 +34,14 @@
 			{
 				"command": "cqh-go-util.var_suffix",
 				"title": "var suffix"
+			},
+			{
+				"command": "cqh-go-util.get_left_var",
+				"title": "var suffix"
+			},
+			{
+				"command": "cqh-go-util.handle_var",
+				"title": "var suffix"
 			}
 		],
 		"keybindings": [
@@ -55,6 +63,16 @@
 			{
 				"command": "cqh-go-util.var_prefix",
 				"key": "alt+v p",
+				"when": "editorTextFocus && !editorHasSelection && editorLangId==go"
+			},
+			{
+				"command": "cqh-go-util.get_left_var",
+				"key": "alt+v g",
+				"when": "editorTextFocus && !editorHasSelection && editorLangId==go"
+			},
+			{
+				"command": "cqh-go-util.handle_var",
+				"key": "alt+v h",
 				"when": "editorTextFocus && !editorHasSelection && editorLangId==go"
 			}
 		]

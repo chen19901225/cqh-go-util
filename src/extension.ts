@@ -1,6 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { get_left_var } from './handler/handler_get_left_var';
+import { handle_var } from './handler/handler_handle_var';
 import { last_line_var } from './handler/handler_last_line_var';
 import { left_variable_apply } from './handler/handler_left_variable_apply';
 import { var_prefix } from './handler/handler_var_prefix';
@@ -40,6 +42,16 @@ export function activate(context: vscode.ExtensionContext) {
 		var_suffix(textEditor, edit);
 	})
 	context.subscriptions.push(var_suffix_disposable);
+
+	let get_left_var_disposable = vscode.commands.registerTextEditorCommand("cqh-go-util.get_left_var", (textEditor, edit) => {
+		get_left_var(textEditor, edit)
+	})
+	context.subscriptions.push(get_left_var_disposable)
+
+	let handle_var_disposable = vscode.commands.registerTextEditorCommand("cqh-go-util.handle_var", (textEditor, edit) => {
+		handle_var(textEditor, edit)
+	})
+	context.subscriptions.push(handle_var_disposable);
 }
 
 // this method is called when your extension is deactivated
