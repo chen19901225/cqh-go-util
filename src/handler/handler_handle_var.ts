@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { service_position_history_add_position, service_position_history_get_last_position } from "../service/service_position_history";
+import { service_position_history_add_position, service_position_history_get_last_position } from "../service/service_position_history"
 //import { update_last_used_variable } from "./handler_get_last_used_variable";
 
 
@@ -125,7 +125,7 @@ function handle_var_last_part_and_remove_prefix(selectedText: string) {
 }
 
 export function handle_var(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) {
-    let selection;
+    let selection: vscode.Selection;
     if (textEditor.selection.isEmpty) {
         let cursor = textEditor.selection.active;
         let start = service_position_history_get_last_position()
@@ -201,14 +201,16 @@ export function handle_var(textEditor: vscode.TextEditor, edit: vscode.TextEdito
             return;
         }
         let { description } = item;
-        let out = _handle_var_with_label(selected_text, description, routes);
-        update_last_used_variable(out);
-        addItemHistory({ 'label': item.description, 'description': item.description });
+        let out = _handle_var_with_label(selected_text, description || "", routes);
+        if (out == undefined) {
+            out = "";
+        }
+        addItemHistory({ 'label': item.description || "", 'description': item.description });
 
         let newEndPost = new vscode.Position(selection.start.line, selection.start.character + out.length);
         // let
         textEditor.edit((builder) => {
-            builder.replace(selection, out);
+            builder.replace(selection, out || "");
         }).then((success) => {
             // let newPosition = new vscode.Position(startPos.line, startPos.character + replaceText.length + 1)
             textEditor.selection = new vscode.Selection(newEndPost, newEndPost);
