@@ -21,8 +21,9 @@ export function last_line_var(textEditor: vscode.TextEditor, edit: vscode.TextEd
             continue;
 
         }
-        let last_variable = last_line.text.slice(ident, last_op_index)
+        let last_variable = last_line.text.slice(ident, last_op_index).trim();
         edit.insert(cursor, last_variable);
+        break
     }
 
 }
